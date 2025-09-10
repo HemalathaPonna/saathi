@@ -77,7 +77,7 @@ Saathi  is a user-friendly platform that connects workers and customers seamless
 Create a `.env` file and add the following:
 
 ```env
-MONGODB_URI=mongodb://localhost:27017/saathi
+MONGODB_URI =
 PORT=3000
 ```
 
