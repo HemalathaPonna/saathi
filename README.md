@@ -6,6 +6,7 @@ Saathi – A Helping Hand, Always There
 Saathi  is a user-friendly platform that connects workers and customers seamlessly. It aims to assist users, especially in rural and semi-urban areas, by providing verified service providers like plumbers, electricians, and bike repair technicians through a simple interface. Saathi focuses on accessibility, trust, and convenience.
 
 ---
+[![Watch the demo](path/to/your/thumbnail.jpg)](https://drive.google.com/file/d/1K8am11u7ZptaslnRQqDMAx6cHpbyx0kL/view?usp=sharing)
 
  🚀 Features
 
