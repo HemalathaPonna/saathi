@@ -1,33 +1,33 @@
 Here’s a professional **README.md** template for your **Saathi** project that you can use and modify as needed:
 
 ````markdown
-# Saathi – A Helping Hand, Always There
+Saathi – A Helping Hand, Always There
 
 **Saathi** is a user-friendly platform that connects workers and customers seamlessly. It aims to assist users, especially in rural and semi-urban areas, by providing verified service providers like plumbers, electricians, and bike repair technicians through a simple interface. Saathi focuses on accessibility, trust, and convenience.
 
 ---
 
-## 🚀 Features
+ 🚀 Features
 
-### ✅ Customer Section
+ ✅ Customer Section
 - Register with name, location, language, and phone number.
 - Browse services like plumbing, bike repair, and electrical work.
 - Easily book workers through a chat interface.
 - View worker details such as rating, availability, and verification status.
 
-### ✅ Worker Section
+ ✅ Worker Section
 - Register by providing skills, languages spoken, and availability.
 - Update working hours using a simple form.
 - Get matched with nearby customers needing services.
 - Build trust with verified profiles and ratings.
 
-### ✅ Admin Features
+ ✅ Admin Features
 - View all registered workers and job requests.
 - Manage service listings and bookings.
 
 ---
 
-## 🛠 Technology Stack
+🛠 Technology Stack
 
 - **Frontend:** HTML, CSS, JavaScript
 - **Backend:** Node.js, Express.js
@@ -37,7 +37,7 @@ Here’s a professional **README.md** template for your **Saathi** project that 
 
 ---
 
-## 📦 Installation
+ 📦 Installation
 
 1. Clone the repository:
    ```bash
