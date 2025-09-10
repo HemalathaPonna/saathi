@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saathi Onboarding</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="worker-regrister.css">
+</head>
+<body class="flex items-center justify-center min-h-screen">
+
+    
+    <div id="language-select-screen" class="language-select-screen">
+    <h1 class="text-3xl font-bold mb-8 text-white">Select Your Language</h1>
+    <div class="grid grid-cols-2 gap-6 p-4">
+        <div data-lang="e" class="language-card transform transition-transform duration-300 hover:scale-105">
+            <h2 class="text-xl font-semibold">English</h2>
+        </div>
+        <div data-lang="h" class="language-card transform transition-transform duration-300 hover:scale-105">
+            <h2 class="text-xl font-semibold">हिन्दी</h2>
+        </div>
+        <div data-lang="t" class="language-card transform transition-transform duration-300 hover:scale-105">
+            <h2 class="text-xl font-semibold">తెలుగు</h2>
+        </div>
+        <div data-lang="a" class="language-card transform transition-transform duration-300 hover:scale-105">
+            <h2 class="text-xl font-semibold">தமிழ்</h2>
+        </div>
+    </div>
+</div>
+
+    <div id="chat-interface-container" class="chat-interface-container hidden">
+        <div class="p-6 text-center border-b border-gray-200 relative z-10">
+            <div class="w-24 h-24 mx-auto rounded-full mb-2 mascot-container">
+                <img id="mascot-image" src="https://media.tenor.com/or4teThG6PAAAAAC/clam-cute.gif" alt="Saathi Mascot" class="w-full h-full object-cover">
+            </div>
+            <h1 class="text-2xl font-semibold text-gray-800">Saathi Onboarding</h1>
+            <p class="text-sm text-gray-500">Let's get you registered!</p>
+        </div>
+
+        <div id="chat-container" class="message-container overflow-y-auto p-4 space-y-4 relative z-10">
+            </div>
+
+        <div class="p-4 border-t border-gray-200 relative z-10">
+            <div id="input-area" class="hidden">
+                <form id="chat-form" class="flex gap-2">
+                    <input id="chat-input" type="text" placeholder="Type your response..." class="flex-1 px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit" class="w-10 h-10 bg-blue-500 text-white rounded-full flex items-center justify-center">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+            <div id="option-area" class="grid grid-cols-2 gap-2 hidden">
+                </div>
+        </div>
+    </div>
+
+    <script src="worker-register.js"></script>
+</body>
+</html>

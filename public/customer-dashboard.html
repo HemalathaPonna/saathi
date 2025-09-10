@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saathi Dashboard</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            color: #334155;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .dashboard-container {
+            width: 100%;
+            max-width: 960px;
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin: 2rem;
+        }
+
+        .main-header {
+            background-color: #4f46e5;
+            color: #ffffff;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-link, .nav-btn {
+            color: #e0e7ff;
+            font-weight: 600;
+            transition: color 0.2s ease-in-out;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-link:hover, .nav-btn:hover {
+            color: #ffffff;
+        }
+
+        .main-content {
+            padding: 2rem;
+        }
+
+        .hidden-section {
+            display: none;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #4f46e5;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .back-btn:hover {
+            color: #3730a3;
+        }
+
+        .catalog-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .catalog-header h1 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .catalog-header p {
+            font-size: 1.125rem;
+            color: #64748b;
+        }
+
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background-color: #f9fafb;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.25rem;
+        }
+
+        .card-hindi-title {
+            color: #64748b;
+            margin-bottom: 0.75rem;
+            font-style: italic;
+        }
+
+        .card-description {
+            color: #64748b;
+            font-size: 0.875rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-meta {
+            font-size: 0.875rem;
+            color: #475569;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-rating span:first-child {
+            color: #facc15;
+        }
+
+        .book-button {
+            background-color: #4f46e5;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .book-button:hover {
+            background-color: #4338ca;
+        }
+        
+        /* Workers Section */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .filter-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .filter-controls select {
+            border-radius: 0.5rem;
+            padding: 0.25rem 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .workers-list {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .worker-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9fafb;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+        }
+
+        .worker-details h3 {
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .worker-details p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .worker-details .rating span {
+            color: #facc15;
+        }
+
+        .worker-contact-btn {
+            background-color: #10b981;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .worker-contact-btn:hover {
+            background-color: #059669;
+        }
+        
+        /* Booking History and Notifications Sections */
+        .history-item, .notification-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #f9fafb;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1rem 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .history-details h4, .notification-content h4 {
+            font-weight: 600;
+            color: #1f2937;
+        }
+        
+        .history-details p, .notification-content p {
+            font-size: 0.875rem;
+            color: #64748b;
+        }
+
+        .history-actions {
+            color: #facc15;
+            font-size: 1rem;
+        }
+
+        .notification-timestamp {
+            font-size: 0.75rem;
+            color: #94a3b8;
+        }
+
+        /* Chat Interface */
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            background-color: #f9fafb;
+            border: 1px solid #e2e8f0;
+            border-radius: 0.75rem;
+            height: 60vh;
+            max-height: 500px;
+            overflow: hidden;
+        }
+
+        .chat-messages {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .chat-message {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1rem;
+            word-wrap: break-word;
+        }
+
+        .customer-message {
+            background-color: #4f46e5;
+            color: white;
+            align-self: flex-end;
+            border-top-right-radius: 0.25rem;
+        }
+
+        .worker-message, .system-message {
+            background-color: #e2e8f0;
+            color: #1f2937;
+            align-self: flex-start;
+            border-top-left-radius: 0.25rem;
+        }
+
+        .chat-input-area {
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .chat-input-area form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input-area input {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 9999px;
+            border: 1px solid #cbd5e1;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .chat-input-area input:focus {
+            border-color: #4f46e5;
+        }
+
+        .chat-input-area button {
+            background-color: #4f46e5;
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.25rem;
+            transition: background-color 0.2s;
+        }
+
+        .chat-input-area button:hover {
+            background-color: #4338ca;
+        }
+
+        .chat-input-area button#voice-input-btn.active {
+            background-color: #dc2626;
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                gap: 1rem;
+            }
+            .dashboard-container {
+                margin: 0.5rem;
+                border-radius: 0.75rem;
+            }
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100 font-sans antialiased text-gray-800">
+
+    <div class="dashboard-container">
+        <!-- Main Header -->
+        <header class="main-header">
+            <div class="logo">Saathi</div>
+            <nav>
+                <ul class="nav-links">
+                    <li><button class="nav-btn" data-section="service-catalog-section">Services</button></li>
+                    <li><button class="nav-btn" data-section="booking-history-section">History</button></li>
+                    <li><button class="nav-btn" data-section="notifications-panel-section">Notifications</button></li>
+                </ul>
+            </nav>
+        </header>
+
+        <!-- Main content area for all sections -->
+        <div class="main-content">
+            <!-- Service Catalog Section (Default view) -->
+            <main id="service-catalog-section">
+                <div class="catalog-header">
+                    <h1>Our Services</h1>
+                    <p>Find trusted local experts for your needs.</p>
+                </div>
+                <div id="services-grid" class="service-grid">
+                    <!-- Service cards will be rendered here by JavaScript -->
+                </div>
+            </main>
+
+            <!-- Nearby Workers Section -->
+            <main id="nearby-workers-section" class="hidden-section">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="section-header">
+                    <div class="catalog-header">
+                        <h1>Nearby Workers</h1>
+                        <p>Contact a verified worker directly.</p>
+                    </div>
+                    <div class="filter-controls">
+                        <label for="rating-filter">Filter by Rating:</label>
+                        <select id="rating-filter">
+                            <option value="all">All</option>
+                            <option value="4.5">4.5+ Stars</option>
+                            <option value="4.0">4.0+ Stars</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="workers-list" class="workers-list">
+                    <!-- Worker profiles will be rendered here by JavaScript -->
+                </div>
+            </main>
+
+            <!-- Booking Interface Section (Chat) -->
+            <main id="booking-interface-section" class="hidden-section">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="catalog-header">
+                    <h1>Chat with Worker</h1>
+                </div>
+                <div class="chat-container">
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Chat messages will be added here by JavaScript -->
+                    </div>
+                    <div class="chat-input-area">
+                        <form id="chat-form">
+                            <input type="text" id="chat-input" placeholder="Type your message...">
+                            <button type="button" id="voice-input-btn"><i class="fas fa-microphone"></i></button>
+                            <button type="submit"><i class="fas fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </main>
+
+            <!-- Booking History Section -->
+            <main id="booking-history-section" class="hidden-section">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="catalog-header">
+                    <h1>Booking History</h1>
+                    <p>View your past and pending bookings.</p>
+                </div>
+                <div id="booking-history-list" class="booking-list">
+                    <!-- Booking history will be rendered here by JavaScript -->
+                </div>
+            </main>
+
+            <!-- Notifications Panel Section -->
+            <main id="notifications-panel-section" class="hidden-section">
+                <button class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+                <div class="catalog-header">
+                    <h1>Notifications</h1>
+                    <p>Stay updated on your bookings.</p>
+                </div>
+                <div id="notifications-list" class="notifications-list">
+                    <!-- Notifications will be rendered here by JavaScript -->
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+        
+            // --- DATA MODELS (Mock Data) ---
+            const services = [
+                { id: "plumbing", name: "Plumbing", nameHindi: "नलसाजी", icon: "💧", description: "Pipe repairs, leaks, installations", avgPrice: "₹300-800", avgTime: "1-2 hours", rating: 4.5, availableWorkers: 12 },
+                { id: "electrical", name: "Electrical", nameHindi: "बिजली", icon: "⚡", description: "Wiring, switches, appliance repair", avgPrice: "₹250-600", avgTime: "30min-2hrs", rating: 4.7, availableWorkers: 8 },
+                { id: "appliance", name: "Appliance Repair", nameHindi: "उपकरण मरम्मत", icon: "⚙️", description: "AC, washing machine, refrigerator", avgPrice: "₹400-1200", avgTime: "1-3 hours", rating: 4.4, availableWorkers: 6 },
+                { id: "home", name: "Home Repair", nameHindi: "घर की मरम्मत", icon: "🏠", description: "Carpentry, door/window fixes", avgPrice: "₹300-1500", avgTime: "2-5 hours", rating: 4.3, availableWorkers: 9 },
+                { id: "mobile", name: "Mobile Repair", nameHindi: "मोबाइल मरम्मत", icon: "📱", description: "Screen, battery, software issues", avgPrice: "₹150-800", avgTime: "30min-2hrs", rating: 4.5, availableWorkers: 11 },
+                { id: "painting", name: "पेंटिंग", icon: "🎨", description: "Interior/exterior wall painting", avgPrice: "₹20-40/sqft", avgTime: "1-3 days", rating: 4.4, availableWorkers: 7 }
+            ];
+        
+            const workers = [
+                { id: "w1", name: "Ramesh Sharma", expertise: "Plumbing", rating: 4.8, price: "₹450", availability: true },
+                { id: "w2", name: "Anil Kumar", expertise: "Electrical", rating: 4.6, price: "₹350", availability: true },
+                { id: "w3", name: "Suresh Singh", expertise: "Appliance Repair", rating: 4.2, price: "₹600", availability: false },
+                { id: "w4", name: "Deepak Yadav", expertise: "Plumbing", rating: 4.9, price: "₹500", availability: true },
+                { id: "w5", name: "Priya Gupta", expertise: "Mobile Repair", rating: 4.7, price: "₹300", availability: true },
+                { id: "w6", name: "Rajesh Kumar", expertise: "Plumbing", rating: 4.1, price: "₹380", availability: true },
+                { id: "w7", name: "Amit Patel", expertise: "Home Repair", rating: 4.5, price: "₹550", availability: false }
+            ];
+            
+            const bookingHistory = [
+                { id: "b1", service: "Plumbing", worker: "Deepak Yadav", date: "2023-10-25", status: "Completed", rating: 5 },
+                { id: "b2", service: "Electrical", worker: "Anil Kumar", date: "2023-09-15", status: "Completed", rating: 4 },
+                { id: "b3", service: "Home Repair", worker: "Amit Patel", date: "2023-11-01", status: "Pending", rating: null }
+            ];
+        
+            const notifications = [
+                { id: "n1", type: "update", message: "Your booking with Deepak Yadav is confirmed. ETA: 30 mins.", timestamp: "2 mins ago" },
+                { id: "n2", type: "message", message: "Ramesh Sharma: I am on my way.", timestamp: "1 hour ago" },
+                { id: "n3", type: "promotion", message: "Get 10% off on your next booking!", timestamp: "1 day ago" }
+            ];
+        
+            // --- DOM REFERENCES & STATE ---
+            const sections = {
+                catalog: document.getElementById('service-catalog-section'),
+                workers: document.getElementById('nearby-workers-section'),
+                booking: document.getElementById('booking-interface-section'),
+                history: document.getElementById('booking-history-section'),
+                notifications: document.getElementById('notifications-panel-section')
+            };
+        
+            const servicesGrid = document.getElementById('services-grid');
+            const workersList = document.getElementById('workers-list');
+            const bookingHistoryList = document.getElementById('booking-history-list');
+            const notificationsList = document.getElementById('notifications-list');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatForm = document.getElementById('chat-form');
+            const chatInput = document.getElementById('chat-input');
+            const voiceInputBtn = document.getElementById('voice-input-btn');
+            const ratingFilter = document.getElementById('rating-filter');
+            const navButtons = document.querySelectorAll('.nav-btn');
+            const backButtons = document.querySelectorAll('.back-btn');
+        
+            let currentWorkerId = null;
+            let currentService = null;
+        
+            // --- NAVIGATION & VIEW MANAGEMENT ---
+            function showSection(sectionId) {
+                Object.values(sections).forEach(section => {
+                    section.classList.add('hidden-section');
+                });
+                const sectionToShow = document.getElementById(sectionId);
+                if (sectionToShow) {
+                    sectionToShow.classList.remove('hidden-section');
+                }
+        
+                // Special rendering for each section
+                if (sectionId === 'service-catalog-section') {
+                    renderServices();
+                } else if (sectionId === 'booking-history-section') {
+                    renderBookingHistory();
+                } else if (sectionId === 'notifications-panel-section') {
+                    renderNotifications();
+                }
+            }
+            
+            // --- DYNAMIC CONTENT RENDERING ---
+        
+            function renderServices() {
+                servicesGrid.innerHTML = '';
+                services.forEach(service => {
+                    const card = document.createElement('div');
+                    card.className = 'service-card';
+                    card.innerHTML = `
+                        <div class="card-icon">${service.icon}</div>
+                        <h3 class="card-title">${service.name}</h3>
+                        <p class="card-hindi-title">${service.nameHindi}</p>
+                        <p class="card-description">${service.description}</p>
+                        <div class="card-meta">
+                            <div class="card-rating">
+                                <span>${'★'.repeat(Math.floor(service.rating))}</span>
+                                <span>${service.rating}</span>
+                            </div>
+                            <div class="card-details">
+                                <span class="card-price">${service.avgPrice}</span>
+                                <span class="card-time">${service.avgTime}</span>
+                            </div>
+                            <div class="card-workers">
+                                ${service.availableWorkers} available
+                            </div>
+                        </div>
+                        <button class="book-button" data-id="${service.id}">Book Now</button>
+                    `;
+                    servicesGrid.appendChild(card);
+                });
+            }
+        
+            function renderWorkers(serviceName) {
+                currentService = serviceName; // Store the current service
+                workersList.innerHTML = '';
+                const filteredWorkers = workers.filter(worker => worker.expertise === serviceName);
+                
+                const filterRating = parseFloat(ratingFilter.value);
+                let finalWorkers = filteredWorkers;
+                if (filterRating !== "all" && !isNaN(filterRating)) {
+                    finalWorkers = filteredWorkers.filter(worker => worker.rating >= filterRating);
+                }
+        
+                if (finalWorkers.length === 0) {
+                    workersList.innerHTML = '<p style="text-align: center; color: #8899aa;">No workers available for this service right now.</p>';
+                } else {
+                    finalWorkers.forEach(worker => {
+                        const card = document.createElement('div');
+                        card.className = 'worker-card';
+                        card.innerHTML = `
+                            <div class="worker-details">
+                                <h3>${worker.name}</h3>
+                                <p>${worker.expertise}</p>
+                                <p class="rating">
+                                    ${'★'.repeat(Math.floor(worker.rating))} ${worker.rating}
+                                </p>
+                                <p class="price">Est. Price: ${worker.price}</p>
+                            </div>
+                            <button class="worker-contact-btn" data-id="${worker.id}">
+                                ${worker.availability ? 'Contact Now' : 'Book Later'}
+                            </button>
+                        `;
+                        card.querySelector('.worker-contact-btn').addEventListener('click', () => startChat(worker.id));
+                        workersList.appendChild(card);
+                    });
+                }
+                showSection('nearby-workers-section');
+            }
+        
+            function renderBookingHistory() {
+                bookingHistoryList.innerHTML = '';
+                if (bookingHistory.length === 0) {
+                    bookingHistoryList.innerHTML = '<p style="text-align: center; color: #8899aa;">You have no past bookings.</p>';
+                    return;
+                }
+                bookingHistory.forEach(booking => {
+                    const item = document.createElement('div');
+                    item.className = 'history-item';
+                    item.innerHTML = `
+                        <div class="history-details">
+                            <h4>${booking.service} with ${booking.worker}</h4>
+                            <p>Date: ${booking.date}</p>
+                            <p>Status: ${booking.status}</p>
+                        </div>
+                    `;
+                    if (booking.status === "Completed") {
+                        item.innerHTML += `<div class="history-actions">${'★'.repeat(booking.rating)}</div>`;
+                    }
+                    bookingHistoryList.appendChild(item);
+                });
+            }
+        
+            function renderNotifications() {
+                notificationsList.innerHTML = '';
+                if (notifications.length === 0) {
+                    notificationsList.innerHTML = '<p style="text-align: center; color: #8899aa;">No new notifications.</p>';
+                    return;
+                }
+                notifications.forEach(notification => {
+                    const item = document.createElement('div');
+                    item.className = 'notification-item';
+                    item.innerHTML = `
+                        <div class="notification-content">
+                            <h4>${notification.type === 'update' ? 'Booking Update' : notification.type === 'message' ? 'New Message' : 'Notification'}</h4>
+                            <p>${notification.message}</p>
+                        </div>
+                        <span class="notification-timestamp">${notification.timestamp}</span>
+                    `;
+                    notificationsList.appendChild(item);
+                });
+            }
+        
+            // --- CHAT FUNCTIONALITY ---
+            function startChat(workerId) {
+                currentWorkerId = workerId;
+                chatMessages.innerHTML = '';
+                const worker = workers.find(w => w.id === workerId);
+                
+                const initialMessage = document.createElement('div');
+                initialMessage.className = 'chat-message system-message';
+                initialMessage.innerHTML = `
+                    <p>You are now chatting with ${worker.name}.</p>
+                    <p>I need a plumber near me.</p>
+                `;
+                chatMessages.appendChild(initialMessage);
+        
+                showSection('booking-interface-section');
+            }
+        
+            chatForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const messageText = chatInput.value.trim();
+                if (messageText) {
+                    appendMessage(messageText, 'customer');
+                    chatInput.value = '';
+                    // For a real app, this would send a message to the worker.
+                }
+            });
+        
+            function appendMessage(text, sender) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `chat-message ${sender}-message`;
+                messageDiv.innerHTML = `<p>${text}</p>`;
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight; // Auto-scroll to the latest message
+            }
+        
+            // --- VOICE INPUT (Web Speech API) ---
+            const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+            let recognition = null;
+            if (SpeechRecognition) {
+                recognition = new SpeechRecognition();
+                recognition.continuous = false;
+                recognition.lang = 'en-US';
+        
+                voiceInputBtn.addEventListener('click', () => {
+                    recognition.start();
+                    voiceInputBtn.innerHTML = '<i class="fas fa-stop"></i>';
+                    voiceInputBtn.classList.add('active');
+                    chatInput.placeholder = 'Speak now...';
+                });
+        
+                recognition.onresult = (event) => {
+                    const transcript = event.results[0][0].transcript;
+                    chatInput.value = transcript;
+                };
+        
+                recognition.onend = () => {
+                    voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    voiceInputBtn.classList.remove('active');
+                    chatInput.placeholder = 'Type your message...';
+                };
+        
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    voiceInputBtn.innerHTML = '<i class="fas fa-microphone"></i>';
+                    voiceInputBtn.classList.remove('active');
+                    chatInput.placeholder = 'Type your message...';
+                };
+            } else {
+                voiceInputBtn.disabled = true;
+                voiceInputBtn.style.display = 'none';
+                console.warn('Web Speech API is not supported by this browser.');
+            }
+            
+            // --- INITIALIZATION ---
+            renderServices();
+        
+            // Event listener for main navigation buttons
+            navButtons.forEach(button => {
+                button.addEventListener('click', (event) => {
+                    const sectionId = event.target.dataset.section;
+                    if (sectionId) {
+                        showSection(sectionId);
+                    }
+                });
+            });
+
+            // Event delegation for service cards
+            servicesGrid.addEventListener('click', (event) => {
+                const button = event.target.closest('.book-button');
+                if (button) {
+                    const serviceCard = event.target.closest('.service-card');
+                    const serviceTitle = serviceCard.querySelector('.card-title').textContent;
+                    renderWorkers(serviceTitle);
+                }
+            });
+        
+            // Event listener for the rating filter
+            ratingFilter.addEventListener('change', () => {
+                if (currentService) {
+                    renderWorkers(currentService);
+                }
+            });
+            
+            // Event delegation for all back buttons
+            document.addEventListener('click', (event) => {
+                if (event.target.closest('.back-btn')) {
+                    event.preventDefault();
+                    showSection('service-catalog-section');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

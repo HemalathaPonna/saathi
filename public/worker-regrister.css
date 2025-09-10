@@ -1,0 +1,96 @@
+
+body {
+    background-image: url('https://cdn.dribbble.com/users/1215244/screenshots/4197365/media/7e14477701cf47c87968fa28bd6e42c0.gif');
+    background-size: cover;
+    background-position: center;
+     background-attachment: fixed; 
+    
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.language-select-screen {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.chat-interface-container {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+    background-color: rgba(255, 255, 255, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.message-container {
+    flex-grow: 1;
+}
+
+.bot-message {
+    background-color: #f0f4f8;
+    color: #1a202c;
+    border-radius: 1.5rem 1.5rem 1.5rem 0.5rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.user-message {
+    background-color: #4c6691;
+    color: #fff;
+    border-radius: 1.5rem 1.5rem 0.5rem 1.5rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.option-button {
+    background-color: #237be8;
+    border: 1px solid #006eff;
+    color: #fafbfc;
+    transition: all 0.2s ease;
+}
+
+.option-button:hover {
+    background-color: #0763db;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+/* Add a background and shadow to make the cards stand out */
+.language-card {
+    background: rgb(57, 141, 226); /* Semi-transparent white */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(244, 219, 219, 0.3);
+    border-radius: 1rem;
+    color: rgba(246, 244, 244, 0.757);
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer; /* Add a pointer cursor to show it's clickable */
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+/* Hover and active effects to make it feel responsive */
+.language-card:hover {
+    background: rgba(255, 69, 1, 0.043);
+    transform: translateY(-5px); /* Lift the card on hover */
+    box-shadow: 0 8px 25px rgba(1, 158, 249, 0.15);
+}
+
+.language-card:active {
+    transform: translateY(-2px);
+}

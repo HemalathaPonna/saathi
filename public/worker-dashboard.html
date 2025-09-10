@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Worker Dashboard</title>
+    <link rel="stylesheet" href="worker-dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body data-theme="light">
+    <div class="background-image-container"></div>
+    <div class="dashboard-container">
+        <header class="dashboard-header">
+            <div class="profile-info">
+                <img src="https://img.freepik.com/premium-vector/cartoon-character-vector-illustration_1128655-324.jpg?w=2000" alt="Profile Picture" class="profile-pic">
+                <span class="worker-name">John Smith</span>
+            </div>
+            <div class="header-actions">
+                <button onclick="index.html" class="btn-secondary" id="back-to-home-btn">Back to Home</button>
+
+                <div class="language-selector">
+                    <select id="language-dropdown">
+                        <option value="en">English</option>
+                        <option value="hi">Hindi</option>
+                        <option value="te">Telugu</option>
+                        <option value="ta">Tamil</option>
+                        <option value="bn">Bengali</option>
+                    </select>
+                </div>
+                <button class="icon-btn" id="notification-bell" aria-label="Notifications">🔔</button>
+                <button class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="content-wrapper">
+            <aside class="sidebar">
+                <nav>
+                    <ul>
+                        <li><a href="#overview" class="nav-item active" data-section="overview">Dashboard Overview</a></li>
+                        <li><a href="#availability" class="nav-item" data-section="availability">Availability</a></li>
+                        <li><a href="#bookings" class="nav-item" data-section="bookings">Bookings</a></li>
+                        <li><a href="#history" class="nav-item" data-section="history">Booking History</a></li>
+                        <li><a href="#reports" class="nav-item" data-section="reports">Reports & Analytics</a></li>
+                        <li><a href="#profile" class="nav-item" data-section="profile">Update Profile</a></li>
+                    </ul>
+                </nav>
+            </aside>
+
+            <main class="dashboard-main">
+                <section id="overview" class="dashboard-section active">
+                    <h2>Dashboard Overview</h2>
+                    <div class="overview-grid">
+                        <div class="card stats-panel">
+                            <h3>Earnings & Stats</h3>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <p class="stat-label">Total Bookings</p>
+                                    <p class="stat-value" id="total-bookings">125</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">Earnings to Date</p>
+                                    <p class="stat-value" id="total-earnings">$1,500</p>
+                                </div>
+                                <div class="stat-item">
+                                    <p class="stat-label">Ratings</p>
+                                    <p class="stat-value" id="worker-ratings">4.8/5</p>
+                                </div>
+                            </div>
+                            <button class="btn-link view-reports-btn" data-target-section="reports">View Detailed Reports</button>
+                        </div>
+                        <div class="card availability-panel">
+                            <h3>Current Availability</h3>
+                            <div class="status-toggle">
+                                <span id="availability-status-text">Not Available</span>
+                                <label class="switch">
+                                    <input type="checkbox" id="availability-toggle">
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                            <p class="small-text">Update your availability for new service requests.</p>
+                        </div>
+                        <div class="card quick-bookings">
+                            <h3>Quick Look: Upcoming Bookings</h3>
+                            <div id="quick-bookings-list" class="booking-list"></div>
+                            <button class="btn-link view-all-bookings-btn" data-target-section="bookings">View All Bookings</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="availability" class="dashboard-section">
+                    <h2>Manage Availability</h2>
+                    <div class="card availability-panel">
+                        <h3>Update Your Availability Status</h3>
+                        <div class="status-toggle large">
+                            <span id="availability-status-text-large">Not Available</span>
+                            <label class="switch large-switch">
+                                <input type="checkbox" id="availability-toggle-large">
+                                <span class="slider round large-slider"></span>
+                            </label>
+                        </div>
+                        <p class="info-text">Toggle this switch to let customers know if you're available for new service requests. Your status will update immediately.</p>
+                    </div>
+                </section>
+
+                <section id="bookings" class="dashboard-section">
+                    <h2>Upcoming & Active Bookings</h2>
+                    <div class="card bookings-panel">
+                        <h3>Your Schedule</h3>
+                        <div id="upcoming-bookings-list" class="booking-list"></div>
+                    </div>
+                </section>
+
+                <section id="history" class="dashboard-section">
+                    <h2>Booking History</h2>
+                    <div class="card booking-history-panel">
+                        <div class="filters">
+                            <label for="history-filter-date">Filter by Date:</label>
+                            <input type="date" id="history-filter-date">
+                            <label for="history-filter-service">Service Type:</label>
+                            <select id="history-filter-service">
+                                <option value="">All</option>
+                                <option value="Plumbing">Plumbing</option>
+                                <option value="Electrical">Electrical</option>
+                            </select>
+                            <label for="history-filter-status">Status:</label>
+                            <select id="history-filter-status">
+                                <option value="">All</option>
+                                <option value="Completed">Completed</option>
+                                <option value="Cancelled">Cancelled</option>
+                            </select>
+                            <button class="btn-secondary apply-filters-btn">Apply Filters</button>
+                        </div>
+                        <div id="booking-history-list" class="booking-list"></div>
+                        <button class="btn-link">Download Reports</button>
+                    </div>
+                </section>
+
+                <section id="reports" class="dashboard-section">
+                    <h2>Reports & Analytics</h2>
+                    <div class="card analytics-overview">
+                        <h3>Your Performance Snapshot</h3>
+                        <div class="chart-container">
+                            <canvas id="bookingsPieChart"></canvas>
+                        </div>
+                        <div class="chart-details">
+                            <h4>Booking Distribution</h4>
+                            <p>This chart shows the percentage of your completed bookings by service category over the last 30 days.</p>
+                        </div>
+                    </div>
+                    <div class="card growth-plan-card">
+                        <h3>Growth Plan & Insights</h3>
+                        <p>Based on your recent performance, here are some insights and recommendations to boost your earnings and ratings:</p>
+                        <ul>
+                            <li><strong>High Demand Area:</strong> You have a strong presence in "Faucet Repair". Consider specializing further or offering related services.</li>
+                            <li><strong>Rating Improvement:</strong> Your average rating is 4.8/5. To reach 5/5, focus on post-service follow-ups.</li>
+                            <li><strong>Idle Time:</strong> Your availability suggests X% idle time. Leverage this by responding quickly to new requests in high-demand periods.</li>
+                            <li><strong>Customer Feedback:</strong> "Always on time and very professional." - <em>Sarah L.</em></li>
+                            <li><strong>Recommendation:</strong> Explore our new "Emergency Service" option to get premium bookings during off-hours.</li>
+                        </ul>
+                        <button class="btn-primary">Explore Marketing Tools</button>
+                    </div>
+                </section>
+
+                <section id="profile" class="dashboard-section">
+                    <h2>Update Profile</h2>
+                    <div class="card profile-update-panel">
+                        <h3>Personal & Service Details</h3>
+                        <form id="profile-form" class="profile-form">
+                            <div class="form-group">
+                                <label for="worker-name">Name</label>
+                                <input type="text" id="worker-name" value="John Smith" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="service-category">Service Category</label>
+                                <input type="text" id="service-category" value="Plumber" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone-number">Phone Number</label>
+                                <input type="tel" id="phone-number" value="+1 234 567 8900" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="languages-supported">Languages Supported</label>
+                                <input type="text" id="languages-supported" value="English, Hindi" placeholder="Comma-separated languages">
+                            </div>
+                            <div class="form-group">
+                                <label for="current-password">Current Password</label>
+                                <input type="password" id="current-password" placeholder="Enter current password">
+                            </div>
+                            <div class="form-group">
+                                <label for="new-password">New Password</label>
+                                <input type="password" id="new-password" placeholder="Enter new password">
+                            </div>
+                            <div class="form-group">
+                                <label for="confirm-password">Confirm New Password</label>
+                                <input type="password" id="confirm-password" placeholder="Confirm new password">
+                            </div>
+                            <button type="submit" class="btn-primary">Save Changes</button>
+                        </form>
+                    </div>
+                </section>
+            </main>
+        </div>
+
+        <footer class="dashboard-footer">
+            <a href="#">Support</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms</a>
+            <button class="logout-btn">Logout</button>
+        </footer>
+    </div>
+
+    <div id="chat-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h4>Chat with <span id="chat-customer-name">Customer</span></h4>
+            <div id="chat-messages" class="chat-messages"></div>
+            <div class="chat-options-and-input">
+                <div id="chat-quick-options" class="chat-quick-options">
+                    <button class="quick-option-btn" data-message="On my way!">On my way!</button>
+                    <button class="quick-option-btn" data-message="Will be there in 15 mins.">15 mins ETA</button>
+                    <button class="quick-option-btn" data-message="Finished the job.">Job done</button>
+                    <button class="quick-option-btn" data-message="I need more details.">More details</button>
+                </div>
+                <form id="chat-form" class="chat-input">
+                    <input type="text" id="chat-input-text" placeholder="Type your message or select an option..." autocomplete="off">
+                    <button type="submit">Send</button>
+                    <button type="button" id="microphone-btn" class="icon-btn">🎤</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="worker-dashboard.js"></script>
+</body>
+</html>

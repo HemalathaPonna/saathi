@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saathi Admin Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .dashboard-table th,
+        .dashboard-table td {
+            border: 1px solid var(--border-color);
+            padding: 12px;
+            text-align: left;
+        }
+        .dashboard-table th {
+            background-color: var(--accent-light);
+        }
+        .verified-dot {
+            height: 10px;
+            width: 10px;
+            background-color: green;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        .unverified-dot {
+            height: 10px;
+            width: 10px;
+            background-color: red;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body data-theme="light">
+    <div class="main-container">
+        <div class="card-animation card-bg">
+            <h1 class="main-heading">Admin Dashboard</h1>
+            <p>View worker details at a glance.</p>
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Skills</th>
+                        <th>Location</th>
+                        <th>Available</th>
+                        <th>Rating</th>
+                        <th>Verified</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Ravi</td>
+                        <td>Plumber, Electrician</td>
+                        <td>Patna</td>
+                        <td>Yes</td>
+                        <td>4.5</td>
+                        <td><span class="verified-dot"></span></td>
+                    </tr>
+                    <tr>
+                        <td>Anand</td>
+                        <td>Bike Repair</td>
+                        <td>Jaipur</td>
+                        <td>No</td>
+                        <td>3.9</td>
+                        <td><span class="unverified-dot"></span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

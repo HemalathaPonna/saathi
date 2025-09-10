@@ -1,0 +1,238 @@
+/* style.css */
+
+/* --- Theme-based Color Variables --- */
+:root {
+    --main-text: #2C2C2C;
+    --main-bg: #F8F5EE;
+    --main-surface: #FFFFFF;
+    --accent-color: #ECA5A5;
+    --accent-light: #F0CFCF;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.5s ease-in-out, color 0.5s ease-in-out;
+    -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
+    color: var(--main-text);
+}
+
+.main-heading {
+    font-family: 'Playfair Display', serif;
+}
+
+[data-theme="light"] {
+    --main-bg: #F8F5EE;
+    --main-surface: #FFFFFF;
+    --main-text: #2C2C2C;
+    --accent-color: #ECA5A5;
+    --accent-light: #F0CFCF;
+    --border-color: #E0E0E0;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] {
+    --main-bg: #1A1A2E;
+    --main-surface: #1F223A;
+    --main-text: #EAEAEA;
+    --accent-color: #55609B;
+    --accent-light: #444E81;
+    --border-color: #3B4061;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+}
+[data-theme="pastel"] {
+    --main-bg: #F0E6EF;
+    --main-surface: #FCF7F9;
+    --main-text: #4C4B64;
+    --accent-color: #A3A3D2;
+    --accent-light: #BABAE1;
+    --border-color: #D6D6E8;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+[data-theme="earthy"] {
+    --main-bg: #F2EFE8;
+    --main-surface: #EDE8DB;
+    --main-text: #473E2F;
+    --accent-color: #A27B5C;
+    --accent-light: #D9B38B;
+    --border-color: #C1A28A;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+[data-theme="calm"] {
+    --main-bg: #E8F0F2;
+    --main-surface: #F5F8FA;
+    --main-text: #3E5F8A;
+    --accent-color: #60A5B7;
+    --accent-light: #8FC9D4;
+    --border-color: #B2DDE3;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Applying the selected theme */
+.card-bg, .content-bg {
+    background-color: var(--main-surface);
+    color: var(--main-text);
+}
+.main-container {
+    background-color: var(--main-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.btn-primary, .bg-accent {
+    background-color: var(--accent-color);
+}
+.text-accent {
+    color: var(--accent-color);
+}
+.border-accent {
+    border-color: var(--accent-color);
+}
+
+/* --- Splash Screen & Animations --- */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 50;
+    transition: opacity 1.5s ease-in-out;
+    opacity: 1;
+    background-color: var(--main-bg); /* Use theme background */
+}
+.splash-screen.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+.splash-text {
+    font-size: 4rem;
+    letter-spacing: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 2s forwards;
+    animation-delay: 0.5s;
+    color: var(--main-text);
+}
+.splash-tagline {
+    font-size: 1.25rem;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 2s forwards;
+    animation-delay: 1.5s;
+    color: var(--main-text);
+}
+@keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Main content layout adjustments --- */
+.main-container .card-bg {
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    max-width: 900px;
+    width: 90%;
+}
+
+.choice-card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap; /* Allows cards to wrap on smaller screens */
+}
+
+.choice-card {
+    flex: 1 1 250px; /* New: Adjacent sides layout */
+    padding: 30px;
+    border-radius: 12px;
+    cursor: pointer;
+    background-color: var(--main-bg);
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.choice-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px var(--shadow-color);
+}
+.choice-card h2 {
+    font-size: 1.2rem;
+    margin: 0 0 10px 0;
+    color: var(--main-text);
+}
+.choice-card p {
+    font-size: 0.9rem;
+    margin: 0;
+    color: var(--subtle-gray); /* Using a softer color for descriptions */
+}
+.text-secondary {
+    color: var(--subtle-gray);
+}
+.card-animation {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+.card-animation:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px 3px rgba(0, 0, 0, 0.05);
+}
+.hover-effect {
+    position: relative;
+    display: inline-block;
+}
+.hover-effect::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+.hover-effect:hover::after {
+    width: 100%;
+}
+/* New styles for the sliding card layout */
+.slides-container {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    gap: 20px;
+}
+
+.slide {
+    flex: 0 0 calc(100% - 40px);
+    scroll-snap-align: start;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Hide scrollbar for a cleaner look */
+.slides-container::-webkit-scrollbar {
+    display: none;
+}
+
+.slides-container {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+/* Additional spacing to separate the heading from the cards */
+.main-container .main-heading {
+    margin-bottom: 30px;
+}
+/* Adds space below the main heading to separate it from the cards */
+.main-heading {
+    margin-bottom: 30px;
+}
